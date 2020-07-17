@@ -1,0 +1,74 @@
+@import "reset";
+@import "variables";
+@import "mixins";
+@import "fonts";
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+    font-family: 'Rowdies', cursive;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.col {
+  width: 50%;
+}
+
+// LOADER
+
+.container_loader {
+    width: 100vw;
+    height: 100vh;
+    background-color: $secondary_color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .loader {
+        position: relative;
+        color: lighten($secondary_color, 10);
+        font-size: 2rem;
+        font-weight: 300;
+        text-transform: uppercase;
+        letter-spacing: 0.4rem;
+
+        &::after {
+            content: "Loading";
+            position: absolute;
+            top: 0;
+            left: calc(50% + 0.75rem);
+            margin-left: 1.5rem;
+            max-width: 0;
+            color: $primary_color;
+            animation: load ease-in-out infinite 3s;
+            overflow: hidden;
+        }
+
+        &::before {
+            content: "Solonick : ";
+        }
+    }
+}
+
+@keyframes load {
+    form {
+        max-width: 0%;
+    }
+    to {
+        max-width: 100%;
+    }
+}
+
+@import "media";
