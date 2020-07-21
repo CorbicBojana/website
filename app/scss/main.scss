@@ -8,7 +8,7 @@ html {
   scroll-behavior: smooth;
 }
 
-* {
+*, ::before, ::after {
   box-sizing: border-box;
 }
 
@@ -20,6 +20,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
 }
 
 .col {
@@ -29,37 +30,256 @@ body {
 // LOADER
 
 .container_loader {
-    width: 100vw;
-    height: 100vh;
-    background-color: $secondary_color;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: $secondary_color;
+  position: relative;
+  z-index: 100;
 
-    .loader {
-        position: relative;
-        color: lighten($secondary_color, 10);
-        font-size: 2rem;
-        font-weight: 300;
+  .loader {
+    position: relative;
+    color: $lighten_secondary_color;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.4rem;
+
+    &::after {
+      content: "Loading . . .";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      max-width: 0;
+      color: $primary_color;
+      overflow: hidden;
+      animation: load infinite 3s ease-out;
+    }
+  }   
+}
+
+// MAIN 
+
+.main {
+
+  .main_header {  // MAIN HEADER
+    width: 100%;
+    height: 8rem;
+    background-color: $secondary_color;
+    justify-content: space-between;
+
+    .logo_holder, .button_social_holder {
+      display: inline-block;
+      width: 8rem;
+      height: 8rem;
+      position: relative;
+
+      .logo_img, .button_img {
+        width: 3rem;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+      }
+    }
+
+    .button_holder {
+      display: flex;
+
+      .button_menu {
+        width: 8rem;
+        height: 8rem;
+        flex-direction: column;
+        align-items: flex-start;
+        font-size: 1rem;
         text-transform: uppercase;
-        letter-spacing: 0.4rem;
+        letter-spacing: 0.2rem;
+        cursor: pointer;
+
+        .button_menu_line {
+          display: inline-block;
+          width: 2.8rem;
+          height: 0.2rem;
+          margin-bottom: 0.6rem;
+          background-color: $primary_color;
+          transition: width ease-in-out 1s;
+        }
 
         &::after {
-            content: "Loading";
-            position: absolute;
-            top: 0;
-            left: calc(50% + 0.75rem);
-            margin-left: 1.5rem;
-            max-width: 0;
-            color: $primary_color;
-            animation: load ease-in-out infinite 3s;
-            overflow: hidden;
+          content: "menu";
+          color: $white_color
+        }
+      }
+
+      .button_menu_open {
+
+        .button_menu_line {
+
+          &:nth-child(2) {
+            width: 20%;
+          }
+
+          &:last-child {
+            width: 0;
+          }
+        }
+      }
+      
+      .button_social {
+        position: relative;
+        background-color: $primary_color;
+        color: $white_color;
+        font-size: 1rem;
+        text-transform: uppercase;
+        text-align: center;
+        cursor: pointer;
+
+        &::after {
+          content: "Share This";
+          opacity: 0;
+          position: absolute;
+          top: -180%;
+          right: 0;
+          left: -100%;
+          margin-top: 120%;
+          padding: 2rem;
+          height: 5rem;
+          background-color: $secondary_color;
+          transition: opacity ease-in-out 1s;
+          transition: margin-top ease-in-out 1s;
         }
 
-        &::before {
-            content: "Solonick : ";
+        &:hover::after {
+          opacity: 1;
+          margin-top: 100%;
+          top: 0;
         }
+      }
     }
+
+    .menu_nav, .social_nav {
+      display: none;
+      flex-direction: column;
+      justify-content: space-evenly;
+      position: absolute;
+      width: 60rem;
+      height: calc(100vh - 8rem);
+      top: 8rem;
+      left: -60rem;
+      padding: 3.5rem 3rem 3.5rem 16rem;
+      background-color: $darken_secondary_color;
+      z-index: 99;
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 40%;
+        right: 0;
+        height: 10rem;
+        background-color: $secondary_color;
+        z-index: -1;
+      }
+
+      .nav_logo_holder {
+        position: relative;
+
+        &::after {
+          content: "";
+          width: 20rem;
+          height: 4rem;
+          position: absolute;
+          top: -1rem;
+          left: 20%;
+          background-color: $secondary_color;
+          z-index: -1;
+        }        
+      }
+
+      .nav_list {
+
+        .nav_list_item {
+          margin-bottom: 3rem;
+
+          .nav_list_item_link {
+            padding: 1rem 0;
+            color: $white_color;
+            font-size: 1.2rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.2rem;
+
+            &:hover {
+              color: $primary_color;
+            }
+          }
+        }
+      }
+    }
+
+    .nav_open {
+      animation: move ease-in-out 0.5s forwards;
+    }
+
+    .scroll_nav {
+      height: 8rem;
+      position: fixed;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      background-color: $darken_secondary_color;
+
+      &::after {
+        content: "";
+        position: absolute;
+        width: 25%;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background: $secondary_color;
+        border-left: 0.2rem solid $lighten_secondary_color;
+      }
+
+      .scroll_nav_list {
+        height: 100%;
+        justify-content: flex-start;
+        padding: 0 2rem;
+
+        .scroll_nav_list_item {
+
+          .scroll_nav_list_item_link {
+            padding: 1.3rem 3.5rem;
+            color: $lighten_secondary_color;
+            font-size: 1rem;
+            font-weight: 300;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.2rem;
+            position: relative;
+
+            &::before {
+              content: "";
+              position: absolute;
+              width: 1.8rem;
+              height: 0.3rem;
+              top: 50%;
+              left: 0;
+              transform: translateY(-50%);
+              background-color: $lighten_secondary_color;
+            }
+
+            &:hover {
+              color: $primary_color;
+            }
+
+            &:hover::before {
+              background-color: $primary_color;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 @keyframes load {
@@ -69,6 +289,15 @@ body {
     to {
         max-width: 100%;
     }
+}
+
+@keyframes move {
+  from {
+    left: -60rem;
+  }
+  to {
+    left: 0;
+  }
 }
 
 @import "media";
