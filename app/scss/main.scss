@@ -280,6 +280,67 @@ body {
       }
     }
   }
+
+  .container_slide {
+    width: 60%;
+    height: calc(100vh - 16rem);
+    position: relative;
+    overflow: hidden;
+  
+    .slide {
+      height: 100%;
+  
+      img {
+        min-width: 100%;
+        height: 100%;
+      }
+    }
+
+    .container_dots {
+      position: absolute;
+      top: 50%;
+      left: 3rem;
+      transform: translateY(-50%);
+      width: 3.6rem;
+      height: 12rem;
+      background-color: rgba($secondary_color, 0.6);
+      border-radius: 2.5rem; 
+      flex-direction: column;
+
+      .dot {
+        display: inline-block;
+        width: 0.6rem;
+        height: 0.6rem;
+        margin-bottom: 1.6rem;
+        background-color: $white_color;
+        border-radius: 50%;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+
+      .active {
+        width: 1.4rem;
+        height: 1.4rem;
+        background-color: transparent;
+        border: 0.1rem solid $white_color;
+        position: relative;
+
+        &::after {
+          content: "";
+          width: 0.6rem;
+          height: 0.6rem;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background-color: $primary_color;
+          border-radius: 50%;
+        }
+      } 
+    }
+  }
 }
 
 @keyframes load {

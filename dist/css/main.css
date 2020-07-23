@@ -233,6 +233,52 @@ body {
         .main .main_header .scroll_nav .scroll_nav_list .scroll_nav_list_item .scroll_nav_list_item_link:hover::before {
           background-color: #FAC921; }
 
+.main .container_slide {
+  width: 60%;
+  height: calc(100vh - 16rem);
+  position: relative;
+  overflow: hidden; }
+  .main .container_slide .slide {
+    height: 100%; }
+    .main .container_slide .slide img {
+      min-width: 100%;
+      height: 100%; }
+  .main .container_slide .container_dots {
+    position: absolute;
+    top: 50%;
+    left: 3rem;
+    transform: translateY(-50%);
+    width: 3.6rem;
+    height: 12rem;
+    background-color: rgba(42, 42, 46, 0.6);
+    border-radius: 2.5rem;
+    flex-direction: column; }
+    .main .container_slide .container_dots .dot {
+      display: inline-block;
+      width: 0.6rem;
+      height: 0.6rem;
+      margin-bottom: 1.6rem;
+      background-color: #f1f1f1;
+      border-radius: 50%; }
+      .main .container_slide .container_dots .dot:last-child {
+        margin-bottom: 0; }
+    .main .container_slide .container_dots .active {
+      width: 1.4rem;
+      height: 1.4rem;
+      background-color: transparent;
+      border: 0.1rem solid #f1f1f1;
+      position: relative; }
+      .main .container_slide .container_dots .active::after {
+        content: "";
+        width: 0.6rem;
+        height: 0.6rem;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #FAC921;
+        border-radius: 50%; }
+
 @keyframes load {
   form {
     max-width: 0%; }
