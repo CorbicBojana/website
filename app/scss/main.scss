@@ -289,6 +289,7 @@ body {
   
     .slide {
       height: 100%;
+      animation: fade 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
   
       img {
         min-width: 100%;
@@ -358,6 +359,15 @@ body {
   }
   to {
     left: 0;
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 
